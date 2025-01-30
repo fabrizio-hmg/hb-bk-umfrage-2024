@@ -3,6 +3,10 @@ import streamlit as st
 
 from classes.analyst import Insight
 
+headers = {
+    'authorization': st.secrets['OPENAI_API_KEY'],
+    'content-type': 'application/json'
+}
 
 def main():
     
