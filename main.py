@@ -34,7 +34,7 @@ def main():
         filtered_df = df[df[selected_columns] == selected_value]
         st.write(filtered_df)
 
-        relevenat_columns = st.multiselect('Select only relevant columns', filtered_df.columns, default=filtered_df.columns)
+        relevenat_columns = st.multiselect('Select only relevant columns', filtered_df.columns)
         relevant_df = filtered_df[relevenat_columns]
     
         if relevenat_columns:
