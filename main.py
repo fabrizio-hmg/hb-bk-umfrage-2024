@@ -12,6 +12,12 @@ def main():
     
     analyst = Insight()
     st.title('HB BK-Umfrage (2024)')
+    st.markdown('''
+        1. Upload the provided dataset in CSV format.  
+        2. Filter the data based on your criteria.  
+        3. Select only the most relevant column(s) for your question.  
+        4. Ask ChatGPT your question.  
+    ''')
     st.divider()
 
     uploaded_file = st.file_uploader('Choose a CSV file', type='csv')
@@ -28,15 +34,16 @@ def main():
         filtered_df = df[df[selected_columns] == selected_value]
         st.write(filtered_df)
 
-        relevenat_columns = st.multiselect('Select relevant columns only', filtered_df.columns, default=filtered_df.columns[:3])
+        relevenat_columns = st.multiselect('Select only relevant columns', filtered_df.columns, default=filtered_df.columns[:3])
         relevant_df = filtered_df[relevenat_columns]
-        st.write(relevant_df)
+    
+        if relevenat_columns:
+            st.write(relevant_df)
 
+        prompt = st.text_area('Ask a question')
 
-        question = st.text_area('Ask a question')
-
-        if question:
-            insight = analyst.generate_insight(relevant_df, question)
+        if prompt:
+            insight = analyst.generate_insight(relevant_df, prompt)
         
         if st.button('Generate Insights'):
             st.write(insight.insight)
