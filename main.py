@@ -23,7 +23,7 @@ def main():
 
     openai_api_key = st.text_input('OpenAI API Key', type='password')
     if not openai_api_key:
-        st.warning('Please add your OpenAI API Key to continue'.)
+        st.warning('Please add your OpenAI API Key to continue.')
         st.stop()
 
     analyst = Insight(openai_api_key)
