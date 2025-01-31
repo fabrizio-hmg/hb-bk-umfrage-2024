@@ -40,4 +40,3 @@ class Insight():
         )
 
         return completion.choices[0].message.parsed
-    
