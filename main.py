@@ -3,6 +3,7 @@ import streamlit as st
 
 from classes.analyst import Insight
 
+
 headers = {
     'authorization': st.secrets['OPENAI_API_KEY'],
     'content-type': 'application/json'
@@ -25,7 +26,7 @@ def main():
         st.warning('Please add your OpenAI API Key to continue')
         st.stop()
 
-    analyst = Insight()
+    analyst = Insight(openai_api_key)
     uploaded_file = st.file_uploader('Choose a CSV file', type='csv')
 
     try:
